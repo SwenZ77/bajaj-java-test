@@ -2,6 +2,7 @@ package com.example.bajaj_java_test;
 
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
+import org.springframework.boot.WebApplicationType;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.http.*;
 import org.springframework.web.client.RestTemplate;
@@ -14,7 +15,10 @@ public class BajajJavaTestApplication implements CommandLineRunner {
 	private final RestTemplate restTemplate = new RestTemplate();
 
 	public static void main(String[] args) {
-		SpringApplication.run(BajajJavaTestApplication.class, args);
+		SpringApplication app = new SpringApplication(BajajJavaTestApplication.class);
+		app.setWebApplicationType(WebApplicationType.NONE); // ✅ no Tomcat
+		app.run(args);
+
 	}
 
 	@Override
