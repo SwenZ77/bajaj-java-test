@@ -16,7 +16,7 @@ public class BajajJavaTestApplication implements CommandLineRunner {
 
 	public static void main(String[] args) {
 		SpringApplication app = new SpringApplication(BajajJavaTestApplication.class);
-		app.setWebApplicationType(WebApplicationType.NONE); // ✅ no Tomcat
+		app.setWebApplicationType(WebApplicationType.NONE);
 		app.run(args);
 
 	}
@@ -44,7 +44,7 @@ public class BajajJavaTestApplication implements CommandLineRunner {
 		System.out.println("Webhook URL: " + webhookUrl);
 		System.out.println("Access Token: " + accessToken);
 
-		// 2. Your SQL Query (Question 2)
+		// 2. SQL Query (Question 2)
 		String finalQuery =
 				"""
 						SELECT
@@ -65,6 +65,7 @@ public class BajajJavaTestApplication implements CommandLineRunner {
 						    e1.EMP_ID DESC;
 				""";
 
+
 		// 3. Submit the final SQL query to webhook
 		HttpHeaders headers = new HttpHeaders();
 		headers.setContentType(MediaType.APPLICATION_JSON);
@@ -78,6 +79,5 @@ public class BajajJavaTestApplication implements CommandLineRunner {
 		ResponseEntity<String> submitResponse = restTemplate.postForEntity(webhookUrl, entity, String.class);
 
 		System.out.println("Submission Response: " + submitResponse.getBody());
-		return;
 	}
 }
